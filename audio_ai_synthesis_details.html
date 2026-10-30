@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio & AI Synthesis | Luminox.fx</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --text-darker: #52525b;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', sans-serif;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --container-width: 1200px;
+            --nav-height: 80px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.5; font-weight: 300; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--text-muted); }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; }
+        .section-padding { padding: 120px 0; }
+        .intro-section { padding-top: calc(var(--nav-height) + 80px); min-height: 100vh; }
+        
+        .tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-darker); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+        .text-huge { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .text-medium { font-size: 1.125rem; line-height: 1.6; color: var(--text-muted); }
+        
+        nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-logo { font-weight: 600; font-size: 1.125rem; display: flex; align-items: center; gap: 12px; }
+        .logo-mark { width: 20px; height: 20px; background: var(--text-main); mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L22 22M22 2L2 22" stroke="white" stroke-width="4"/></svg>') center/contain no-repeat; -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L22 12L12 22L2 12L12 2Z" fill="white"/></svg>') center/contain no-repeat; }
+        
+        .btn-outline { border: 1px solid var(--border-color); color: var(--text-main); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; transition: background var(--transition); }
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.05); }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; margin-top: 80px; padding-top: 80px; border-top: 1px solid var(--border-color); }
+        .sidebar-list h3 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-darker); margin-bottom: 24px; }
+        .sidebar-list ul { list-style: none; }
+        .sidebar-list li { margin-bottom: 16px; color: var(--text-main); font-size: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; display: flex; justify-content: space-between; }
+        .sidebar-list li span { color: var(--text-muted); font-size: 0.875rem; }
+
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <div class="logo-mark"></div>
+            Luminox.fx.
+        </a>
+        <a href="index.html" class="btn-outline">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Hub
+        </a>
+    </nav>
+
+    <section class="section-padding intro-section">
+        <div class="container">
+            <div class="tag">[ 04 / 04 ] SERVICE DETAIL</div>
+            <h1 class="text-huge">Audio & AI Synthesis</h1>
+            <p class="text-medium" style="max-width: 800px; margin-top: 2rem;">
+                Sound is the unseen half of any premium visual experience. I integrate cutting-edge AI vocal synthesis and spatial web audio to create immersive, multi-sensory digital environments that feel alive and responsive.
+            </p>
+
+            <div class="content-grid">
+                <div class="sidebar-list">
+                    <h3>Core Toolset</h3>
+                    <ul>
+                        <li>ElevenLabs <span>AI Vocals</span></li>
+                        <li>Web Audio API <span>Spatial Sound</span></li>
+                        <li>Digital Foley <span>Custom SFX</span></li>
+                        <li>ZArchiver / Git <span>Asset Control</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 style="font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem;">Designing the Unseen.</h2>
+                    <p class="text-medium" style="margin-bottom: 1.5rem;">
+                        A luxury web experience is defined by its subtleties. By utilizing the native Web Audio API, I program custom interface sounds—like terminal ticks, deep bass hovers, and clean mechanical clicks—that respond directly to user interaction without causing layout lag.
+                    </p>
+                    <p class="text-medium">
+                        Coupled with advanced AI vocal generation through platforms like ElevenLabs, I am able to produce voice-overs and audio feedback systems that match the exact tone, pacing, and branding requirements of the most demanding cinematic projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
