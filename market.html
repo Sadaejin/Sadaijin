@@ -5,7 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Tech | Luminox.fx</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>/* PASTE EXACT CSS FROM motion.html HERE */</style>
+    <style>
+        :root {
+            --bg-color: #050505; --text-main: #f4f4f5; --text-muted: #a1a1aa; --text-darker: #52525b;
+            --border-color: rgba(255, 255, 255, 0.1); --nav-bg: rgba(5, 5, 5, 0.8); --hover-bg: rgba(255, 255, 255, 0.03);
+            --font-main: 'Inter', sans-serif; --transition: 0.3s ease;
+            --theme-transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
+        }
+        [data-theme="light"] {
+            --bg-color: #fcfcfc; --text-main: #111111; --text-muted: #555555; --text-darker: #999999;
+            --border-color: rgba(0, 0, 0, 0.1); --nav-bg: rgba(252, 252, 252, 0.8); --hover-bg: rgba(0, 0, 0, 0.03);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background: var(--bg-color); color: var(--text-main); font-family: var(--font-main); transition: var(--theme-transition); overflow-x: hidden; }
+        a, button { color: inherit; text-decoration: none; transition: var(--transition); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .pt-header { padding-top: 160px; padding-bottom: 60px; border-bottom: 1px solid var(--border-color); }
+        .text-huge { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .text-muted { color: var(--text-muted); line-height: 1.6; }
+        .tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-darker); margin-bottom: 2rem; display: block; }
+        
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: var(--nav-bg); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border-color); }
+        .nav-actions { display: flex; gap: 16px; }
+        .btn-icon { height: 40px; padding: 0 16px; border: 1px solid var(--border-color); border-radius: 20px; background: transparent; color: var(--text-main); font-size: 0.75rem; letter-spacing: 0.1em; transition: var(--transition); }
+        .btn-icon:hover { background: var(--hover-bg); }
+        
+        /* Cursor */
+        .cursor { position: fixed; width: 8px; height: 8px; background: var(--text-main); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s; }
+        .cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--text-muted); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s; }
+        .cursor.active { width: 0; height: 0; background: transparent; }
+        .cursor-follower.active { width: 60px; height: 60px; background-color: var(--hover-bg); border-color: var(--text-main); }
+
+        /* Pricing Grid */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1px; background: var(--border-color); border: 1px solid var(--border-color); margin: 60px 0; }
+        .price-card { background: var(--bg-color); padding: 40px; display: flex; flex-direction: column; transition: var(--theme-transition); }
+        .price-card:hover { background: var(--hover-bg); }
+        .tier-name { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-darker); }
+        .tier-price { font-size: 2.5rem; font-weight: 500; margin: 16px 0; color: var(--text-main); }
+        .tier-best { font-size: 0.875rem; color: var(--text-main); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border-color); }
+        .tier-features { list-style: none; margin-bottom: 32px; flex-grow: 1; }
+        .tier-features li { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 12px; display: flex; gap: 8px; line-height: 1.4; }
+        .tier-features li::before { content: '•'; color: var(--text-main); }
+        
+        /* Terminal */
+        .terminal { background: #0a0a0a; border: 1px solid #222; border-radius: 8px; padding: 32px; font-family: monospace; color: #a1a1aa; font-size: 0.875rem; line-height: 1.8; overflow-x: auto; margin-bottom: 80px; }
+        [data-theme="light"] .terminal { background: #f4f4f5; border-color: #d4d4d8; color: #52525b; }
+        .terminal-accent { color: #48c9c9; }
+
+        /* Party Mode */
+        @keyframes rgb-text { 0% { color: #ff0055; } 33% { color: #00ffaa; } 66% { color: #5500ff; } 100% { color: #ff0055; } }
+        @keyframes rgb-border { 0% { border-color: #ff0055; } 33% { border-color: #00ffaa; } 66% { border-color: #5500ff; } 100% { border-color: #ff0055; } }
+        [data-party="true"] .text-huge, [data-party="true"] .tier-price { animation: rgb-text 2s linear infinite; }
+        [data-party="true"] .price-card { animation: rgb-border 2s linear infinite; border: 1px solid; }
+
+        footer { padding: 40px 0; text-align: center; font-size: 0.75rem; color: var(--text-darker); border-top: 1px solid var(--border-color); }
+    </style>
 </head>
 <body>
     <div class="cursor" id="cursor"></div><div class="cursor-follower" id="cursor-follower"></div>
@@ -74,6 +129,32 @@
     </div>
     <footer><div class="container">© 2026 Luminox.fx. Market Tech Division. Built with intent.</div></footer>
 
-    <script>/* PASTE EXACT JS FROM motion.html HERE */</script>
+    <script>
+        const cursor = document.getElementById('cursor'); const follower = document.getElementById('cursor-follower');
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; });
+        function animateCursor() { followerX += (mouseX - followerX) * 0.15; followerY += (mouseY - followerY) * 0.15; follower.style.left = followerX + 'px'; follower.style.top = followerY + 'px'; requestAnimationFrame(animateCursor); }
+        animateCursor();
+        document.querySelectorAll('a, button, .price-card, .terminal').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.classList.add('active'); follower.classList.add('active'); });
+            el.addEventListener('mouseleave', () => { cursor.classList.remove('active'); follower.classList.remove('active'); });
+        });
+
+        // Toggles
+        const root = document.documentElement;
+        let currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') { root.setAttribute('data-theme', 'light'); document.getElementById('theme-toggle').textContent = '[ DARK ]'; }
+        document.getElementById('theme-toggle').addEventListener('click', (e) => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', currentTheme); localStorage.setItem('theme', currentTheme);
+            e.target.textContent = currentTheme === 'light' ? '[ DARK ]' : '[ LIGHT ]';
+        });
+
+        let isParty = false;
+        document.getElementById('partyToggle').addEventListener('click', (e) => {
+            isParty = !isParty; root.setAttribute('data-party', isParty);
+            e.target.style.animation = isParty ? 'rgb-text 2s linear infinite' : 'none';
+        });
+    </script>
 </body>
 </html>
